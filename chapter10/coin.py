@@ -2,13 +2,13 @@ import random
 
 class Coin:
     def __init__(self):
-        self.sideup = "Орел"
+        self._sideup = "Орел"
 
     def toss(self):
         if random.randint(0, 1) == 0:
-            self.sideup = "Орел"
+            self._sideup = "Орел"
         else:
-            self.sideup = "Решка"
+            self._sideup = "Решка"
 
     def get_sideup(self):
-        return self.sideup
+        return self._sideup
