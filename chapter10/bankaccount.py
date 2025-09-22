@@ -15,3 +15,6 @@ class BankAccount():
 
     def get_balance(self):
         return self._balance
+    
+    def __str__(self):
+        return f"Остаток на счете $ {self.get_balance():,.2f}"
