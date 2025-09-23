@@ -66,7 +66,7 @@ class Truck(Automobile):
             f"Модель: {self.get_model()}\n" +
             f"Пробег: {self.get_milege()}\n" +
             f"Цена: {self.get_price()}\n" +
-            f"Тип привода: {self.__drive_type()}"
+            f"Тип привода: {self.get_drive_type()}"
         )
     
 class SUV(Automobile):
@@ -77,7 +77,7 @@ class SUV(Automobile):
     def set_pass_cap(self, pass_cap):
         self.__pass_cap = pass_cap
 
-    def get_drive_type(self):
+    def get_pass_cap(self):
         return self.__pass_cap
     
     def __str__(self):
@@ -86,5 +86,5 @@ class SUV(Automobile):
             f"Модель: {self.get_model()}\n" +
             f"Пробег: {self.get_milege()}\n" +
             f"Цена: {self.get_price()}\n" +
-            f"Пассажирская вместимость: {self.__pass_cap()}"
+            f"Пассажирская вместимость: {self.get_pass_cap()}"
         )
