@@ -48,3 +48,43 @@ class Car(Automobile):
             f"Цена: {self.get_price()}\n" +
             f"Количество дверей: {self.get_doors()}"
         )
+    
+class Truck(Automobile):
+    def __init__(self, make, model, mileage, price, drive_type):
+        super().__init__(make, model, mileage, price)
+        self.__drive_type = drive_type
+
+    def set_drive_type(self, drive_type):
+        self.__drive_type = drive_type
+
+    def get_drive_type(self):
+        return self.__drive_type
+
+    def __str__(self):
+        return (
+            f"Изготовитель: {self.get_make()}\n" +
+            f"Модель: {self.get_model()}\n" +
+            f"Пробег: {self.get_milege()}\n" +
+            f"Цена: {self.get_price()}\n" +
+            f"Тип привода: {self.__drive_type()}"
+        )
+    
+class SUV(Automobile):
+    def __init__(self, make, model, mileage, price, pass_cap):
+        super().__init__(make, model, mileage, price)
+        self.__pass_cap = pass_cap
+
+    def set_pass_cap(self, pass_cap):
+        self.__pass_cap = pass_cap
+
+    def get_drive_type(self):
+        return self.__pass_cap
+    
+    def __str__(self):
+        return (
+            f"Изготовитель: {self.get_make()}\n" +
+            f"Модель: {self.get_model()}\n" +
+            f"Пробег: {self.get_milege()}\n" +
+            f"Цена: {self.get_price()}\n" +
+            f"Пассажирская вместимость: {self.__pass_cap()}"
+        )
