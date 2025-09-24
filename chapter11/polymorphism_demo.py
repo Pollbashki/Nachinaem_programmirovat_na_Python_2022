@@ -16,8 +16,11 @@ def main():
     show_mammal_infо(cat)
 
 def show_mammal_infо(creature):
-    creature.show_species()
-    creature.make_sound()
+    if isinstance(creature, Mammal):
+        creature.show_species()
+        creature.make_sound()
+    else:
+        print('Это не млекопитающее!')
 
 if __name__ == "__main__":
     main()
