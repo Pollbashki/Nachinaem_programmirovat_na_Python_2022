@@ -4,7 +4,7 @@
 from Bank import *
 
 # создаем экземпляр банка
-oBank = Bank()
+oBank = Bank('9 to 5', '123 Main Street, Anytown, USA', '(650) 555-1212')
 
 joesAccountNumber = oBank.createAccount('Joe', 100, 'JoesPassword')
 print("Joe's account number is:", joesAccountNumber)
@@ -14,42 +14,39 @@ print("Mary's account number is:", marysAccountNumber)
 
 while True:
     print()
-    print('Press b to get the balance')
+    print('To get an account balance, press b')
     print('To close an account, press c')
-    print('Press d to make a deposit')
-    print('Press o to open a new account')
-    print('Press w to make a withdrawal')
-    print('Press s to show all accounts')
-    print('Press q to quit')
+    print('To make a deposit, press d')
+    print('To get bank information, press i')
+    print('To open a new account, press o')
+    print('To quit, press q')
+    print('To show all accounts, press s')
+    print('To make a withdrawal, press w')
     print()
 
     action = input('What do you want to do? ')
     action = action.lower()
-    action = action[0]
+    action = action[0] # берем первую букву
     print()
 
-    if action == 'b':
-        oBank.balance()
-
-    elif action == 'c':
-        oBank.closeAccount()
-
-    elif action == 'd':
-        oBank.deposit()
-
-    elif action == 'o':
-        oBank.openAccount()
-
-    elif action == 's':
-        oBank.show()
-
-    elif action == 'q':
-        break
-
-    elif action == 'w':
-        oBank.withdraw()
-
-    else:
-        print('Sorry, that was not a valid action. Please try again.')
+    try:
+        if action == 'b':
+            oBank.balance()
+        elif action == 'c':
+            oBank.closeAccount()
+        elif action == 'd':
+            oBank.deposit()
+        elif action == 'i':
+            oBank.getInfo()
+        elif action == 'o':
+            oBank.openAccount()
+        elif action == 'q':
+            break
+        elif action == 's':
+            oBank.show()
+        elif action == 'w':
+            oBank.withdraw()
+    except AbortTransaction as error:
+        print(error)
 
 print('Done')
