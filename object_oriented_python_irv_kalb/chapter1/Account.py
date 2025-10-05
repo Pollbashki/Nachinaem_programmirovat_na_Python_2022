@@ -4,7 +4,7 @@ class Account():
     def __init__(self, name, balance, password):
         self.name = name
         self.balance = int(balance)
-        self.passwoed = password
+        self.password = password
 
     def deposit(self, amountToDeposit, password):
         if password != self.password:
