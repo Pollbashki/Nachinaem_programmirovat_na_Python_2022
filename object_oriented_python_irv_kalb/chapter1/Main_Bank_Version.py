@@ -5,12 +5,12 @@ from Account import *
 
 accountList = []
 
-oJoesAccount = Account('Joe', 100, 'JoesPassword')
-accountList.append(oJoesAccount)
+oAccount = Account('Joe', 100, 'JoesPassword')
+accountList.append(oAccount)
 print("Joe's account number is 0")
 
-oMarysAccount = Account('Mary', 12345, 'MarysPassword')
-accountList.append(oMarysAccount)
+oAccount = Account('Mary', 12345, 'MarysPassword')
+accountList.append(oAccount)
 print("Mary's account number is 1")
 
 accountList[0].show()
