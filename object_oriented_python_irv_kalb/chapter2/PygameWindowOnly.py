@@ -17,6 +17,7 @@ window = pygame.display.set_mode(size=(WINDOW_WIDTH, WINDOW_HEIGHT))
 clock = pygame.time.Clock()
 
 #4 – Загружаем элементы: изображения, звуки и т. д.
+ballImage = pygame.image.load('object_oriented_python_irv_kalb/chapter2/images/ball.png')
 
 #5 – Инициализируем переменные
 
@@ -35,6 +36,8 @@ while True:
     window.fill(BLACK)
 
     #10 – Рисуем все элементы окна
+    window.blit(source=ballImage, dest=(100, 200))
+
 
     #11 – Обновляем окно
     pygame.display.update()
