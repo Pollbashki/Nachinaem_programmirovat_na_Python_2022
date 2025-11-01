@@ -25,7 +25,7 @@ while True:
     #7 – Проверяем наличие событий и обрабатываем их
     for event in pygame.event.get():
         # Нажата кнопка "закрыть"? Выходим из pygame и завершаем программу
-        if event.type == pygame.QUIT():
+        if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
 
