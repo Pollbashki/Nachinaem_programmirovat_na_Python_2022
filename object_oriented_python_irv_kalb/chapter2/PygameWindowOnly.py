@@ -5,11 +5,16 @@ import pygame
 from pygame.locals import *
 import sys
 
+import random
+
 #2 – Определяем константы
 BLACK = (0, 0, 0)
 WINDOW_WIDTH = 640
 WINDOW_HEIGHT = 480
 FRAMES_PER_SECOND = 30
+BALL_WIDTH_HEIGHT = 100
+MAX_WIDTH = WINDOW_WIDTH - BALL_WIDTH_HEIGHT
+MAX_HEIGHT = WINDOW_HEIGHT - BALL_WIDTH_HEIGHT
 
 #3 – Инициализируем окружение pygame
 pygame.init()
@@ -20,6 +25,9 @@ clock = pygame.time.Clock()
 ballImage = pygame.image.load('object_oriented_python_irv_kalb/chapter2/images/ball.png')
 
 #5 – Инициализируем переменные
+ballX = random.randrange(MAX_WIDTH)
+ballY = random.randrange(MAX_HEIGHT)
+ballRect = pygame.Rect(ballX, ballX, BALL_WIDTH_HEIGHT, BALL_WIDTH_HEIGHT)
 
 #6 – Бесконечный цикл
 while True:
@@ -29,14 +37,26 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
+        # определяем, щелкнул ли пользователь
+        if event.type == pygame.MOUSEBUTTONUP:
+            # mouseX, mouseY = event.pos
+            # Могли бы это сделать принеобходимости
 
+            # проверяем, был ли щелчок в пределах прямоугольника мяча
+            # Если это так, выбираем случайным образом новое
+            # местоположение
+
+            if ballRect.collidepoint(event.pos):
+                ballX = random.randrange(MAX_WIDTH)
+                ballY = random.randrange(MAX_HEIGHT)
+                ballRect = pygame.Rect(ballX, ballX, BALL_WIDTH_HEIGHT, BALL_WIDTH_HEIGHT)
     #8 – Выполняем действия "в рамках фрейма"
 
     #9 – Очищаем окно
     window.fill(BLACK)
 
     #10 – Рисуем все элементы окна
-    window.blit(source=ballImage, dest=(100, 200))
+    window.blit(source=ballImage, dest=(ballX, ballY))
 
 
     #11 – Обновляем окно
