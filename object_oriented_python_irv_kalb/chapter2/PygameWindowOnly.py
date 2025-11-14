@@ -13,12 +13,7 @@ WINDOW_WIDTH = 640
 WINDOW_HEIGHT = 480
 FRAMES_PER_SECOND = 30
 BALL_WIDTH_HEIGHT = 100
-MAX_WIDTH = WINDOW_WIDTH - BALL_WIDTH_HEIGHT
-MAX_HEIGHT = WINDOW_HEIGHT - BALL_WIDTH_HEIGHT
-TARGET_X = 400
-TARGET_Y = 320
-TARGET_WIDTH_HEIGHT = 120
-N_PIXELS_TO_MOVE = 3
+N_PIXELS_PER_FRAME = 3
 
 #3 – Инициализируем окружение pygame
 pygame.init()
@@ -27,13 +22,14 @@ clock = pygame.time.Clock()
 
 #4 – Загружаем элементы: изображения, звуки и т. д.
 ballImage = pygame.image.load('object_oriented_python_irv_kalb/chapter2/images/ball.png')
-targetImage = pygame.image.load('object_oriented_python_irv_kalb/chapter2/images/target.jpg')
 
 #5 – Инициализируем переменные
+MAX_WIDTH = WINDOW_WIDTH - BALL_WIDTH_HEIGHT
+MAX_HEIGHT = WINDOW_HEIGHT - BALL_WIDTH_HEIGHT
 ballX = random.randrange(MAX_WIDTH)
 ballY = random.randrange(MAX_HEIGHT)
-ballRect = pygame.Rect(ballX, ballX, BALL_WIDTH_HEIGHT, BALL_WIDTH_HEIGHT)
-targetRect = pygame.Rect(TARGET_X, TARGET_Y, TARGET_WIDTH_HEIGHT, TARGET_WIDTH_HEIGHT)
+xSpeed = N_PIXELS_PER_FRAME
+ySpeed = N_PIXELS_PER_FRAME
 
 #6 – Бесконечный цикл
 while True:
@@ -45,32 +41,23 @@ while True:
             sys.exit()
 
     #8 – Выполняем действия "в рамках фрейма"
-    # Проверяем нажатия клавиш пользователем
-    keyPressedTuple = pygame.key.get_pressed()
 
-    if keyPressedTuple[pygame.K_LEFT]: # перемещаемся влево
-        ballX = ballX - N_PIXELS_TO_MOVE
+    if (ballX < 0) or (ballX >= MAX_WIDTH):
+        xSpeed = -xSpeed # обращаем направление Х
 
-    if keyPressedTuple[pygame.K_RIGHT]: # перемещаемся вправо
-        ballX = ballX + N_PIXELS_TO_MOVE
+    if (ballY < 0) or (ballY >= MAX_HEIGHT):
+        ySpeed = -ySpeed # обращаем направление Y
 
-    if keyPressedTuple[pygame.K_UP]: # перемещаемся вверх
-        ballY = ballY - N_PIXELS_TO_MOVE
-
-    if keyPressedTuple[pygame.K_DOWN]: # перемещаемся вниз
-        ballY = ballY + N_PIXELS_TO_MOVE
+    # обновляем местоположение мяча, используя скорость в двух
+    # направлениях
     
-    # определяем, перекрывает ли мяч целевое изображение
-    ballRect = pygame.Rect(ballX, ballY, BALL_WIDTH_HEIGHT, BALL_WIDTH_HEIGHT)
-
-    if ballRect.colliderect(targetRect):
-        print('Ball is touching the target')
+    ballX = ballX + xSpeed
+    ballY = ballY + ySpeed
 
     #9 – Очищаем окно
     window.fill(BLACK)
 
     #10 – Рисуем все элементы окна
-    window.blit(targetImage, (TARGET_X, TARGET_Y))
     window.blit(source=ballImage, dest=(ballX, ballY))
 
 
