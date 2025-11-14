@@ -24,10 +24,11 @@ clock = pygame.time.Clock()
 ballImage = pygame.image.load('object_oriented_python_irv_kalb/chapter2/images/ball.png')
 
 #5 – Инициализируем переменные
-MAX_WIDTH = WINDOW_WIDTH - BALL_WIDTH_HEIGHT
-MAX_HEIGHT = WINDOW_HEIGHT - BALL_WIDTH_HEIGHT
-ballX = random.randrange(MAX_WIDTH)
-ballY = random.randrange(MAX_HEIGHT)
+ballRect = ballImage.get_rect()
+MAX_WIDTH = WINDOW_WIDTH - ballRect.width
+MAX_HEIGHT = WINDOW_HEIGHT - ballRect.height
+ballRect.left = random.randrange(MAX_WIDTH)
+ballRect.top = random.randrange(MAX_HEIGHT)
 xSpeed = N_PIXELS_PER_FRAME
 ySpeed = N_PIXELS_PER_FRAME
 
@@ -42,23 +43,23 @@ while True:
 
     #8 – Выполняем действия "в рамках фрейма"
 
-    if (ballX < 0) or (ballX >= MAX_WIDTH):
+    if (ballRect.left < 0) or (ballRect.right >= WINDOW_WIDTH):
         xSpeed = -xSpeed # обращаем направление Х
 
-    if (ballY < 0) or (ballY >= MAX_HEIGHT):
+    if (ballRect.top < 0) or (ballRect.bottom >= WINDOW_HEIGHT):
         ySpeed = -ySpeed # обращаем направление Y
 
     # обновляем местоположение мяча, используя скорость в двух
     # направлениях
     
-    ballX = ballX + xSpeed
-    ballY = ballY + ySpeed
+    ballRect.left = ballRect.left + xSpeed
+    ballRect.top = ballRect.top + ySpeed
 
     #9 – Очищаем окно
     window.fill(BLACK)
 
     #10 – Рисуем все элементы окна
-    window.blit(source=ballImage, dest=(ballX, ballY))
+    window.blit(ballImage, ballRect)
 
 
     #11 – Обновляем окно
