@@ -44,30 +44,21 @@ while True:
             pygame.quit()
             sys.exit()
 
-        elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT:
-                ballX = ballX - N_PIXELS_TO_MOVE
-            elif event.key == pygame.K_RIGHT:
-                ballX = ballX + N_PIXELS_TO_MOVE
-            elif event.key == pygame.K_UP:
-                ballY = ballY - N_PIXELS_TO_MOVE
-            elif event.key == pygame.K_DOWN:
-                ballY = ballY + N_PIXELS_TO_MOVE
-
-        # определяем, щелкнул ли пользователь
-        if event.type == pygame.MOUSEBUTTONUP:
-            # mouseX, mouseY = event.pos
-            # Могли бы это сделать принеобходимости
-
-            # проверяем, был ли щелчок в пределах прямоугольника мяча
-            # Если это так, выбираем случайным образом новое
-            # местоположение
-
-            if ballRect.collidepoint(event.pos):
-                ballX = random.randrange(MAX_WIDTH)
-                ballY = random.randrange(MAX_HEIGHT)
-                ballRect = pygame.Rect(ballX, ballX, BALL_WIDTH_HEIGHT, BALL_WIDTH_HEIGHT)
     #8 – Выполняем действия "в рамках фрейма"
+    # Проверяем нажатия клавиш пользователем
+    keyPressedTuple = pygame.key.get_pressed()
+
+    if keyPressedTuple[pygame.K_LEFT]: # перемещаемся влево
+        ballX = ballX - N_PIXELS_TO_MOVE
+
+    if keyPressedTuple[pygame.K_RIGHT]: # перемещаемся вправо
+        ballX = ballX + N_PIXELS_TO_MOVE
+
+    if keyPressedTuple[pygame.K_UP]: # перемещаемся вверх
+        ballY = ballY - N_PIXELS_TO_MOVE
+
+    if keyPressedTuple[pygame.K_DOWN]: # перемещаемся вниз
+        ballY = ballY + N_PIXELS_TO_MOVE
     
     # определяем, перекрывает ли мяч целевое изображение
     ballRect = pygame.Rect(ballX, ballY, BALL_WIDTH_HEIGHT, BALL_WIDTH_HEIGHT)
